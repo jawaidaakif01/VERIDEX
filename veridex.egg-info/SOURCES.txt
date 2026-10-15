@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+veridex.egg-info/PKG-INFO
+veridex.egg-info/SOURCES.txt
+veridex.egg-info/dependency_links.txt
+veridex.egg-info/requires.txt
+veridex.egg-info/top_level.txt

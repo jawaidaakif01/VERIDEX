@@ -55,3 +55,76 @@ def one_bootstrap_round(changes):
         random_position = random.randrange(len(changes))
         picked.append(changes[random_position])
     return average(picked)
+
+
+def confidence_range(changes, n_rounds = 1000):
+    '''Run many bootstrap rounds, then keep the middle 95% of the averages. Returns (low, high).'''
+    round_averages = []
+    for r in range(n_rounds):
+        round_averages.append(one_bootstrap_round(changes))
+
+    round_averages.sort()
+
+    low_position = int(n_rounds * 0.025)
+    high_position = int(n_rounds * 0.975) - 1
+    return round_averages[low_position], round_averages[high_position]
+
+
+def decide(low, high, delta):
+    '''Turn the range into one of three verdicts.
+    delta = the size of drop we are willing to accept.
+    '''
+
+    if high < -delta:
+        return "REGRESSION"
+    if low > - delta:
+        return "NO_MATERIAL_REGRESSION"
+    return "INCONCLUSIVE"
+
+
+def find_flaky_cases(all_results):
+    '''Find test cases that sometimes pass and sometimes fail.
+    Returns a list of (case_number, pass_rate). Case numbers start at 1.
+    '''
+
+    rates = case_pass_rate(all_results)
+    flaky = []
+    for i in range(len(rates)):
+        if rates[i] > 0 and rates[i] < 1:
+            flaky.append((i + 1, rates[i]))
+    return flaky
+
+def count_case_types(all_results):
+    '''Count how many cases always pass, always fail, or are flaky.
+    Returns (always_pass, always_fail, flaky).'''
+
+    rates = case_pass_rate(all_results)
+    always_pass = 0
+    always_fail = 0
+    flaky = 0
+
+    for rate in rates:
+        if rate == 1:
+            always_pass = always_pass + 1
+        elif rate == 0:
+            always_fail = always_fail + 1
+        else:
+            flaky = flaky + 1
+    return always_pass, always_fail, flaky
+
+
+def estimate_cases_needed(observed, low, high, delta, current_cases):
+    '''If the verdict is INCONCLUSIVE, roughly hwo many test cases would we need to get a clear answer? Returns None if the verdict is already clear.'''
+
+    if decide(low, high, delta) != "INCONCLUSIVE":
+        return None
+
+    half_width = (high-low)/2
+    gap = abs(observed - (-delta))
+
+    if gap < 0.005:
+        gap = 0.005
+
+    times_more = (half_width / gap) ** 2
+    needed = int(current_cases * times_more) + 1
+    return needed

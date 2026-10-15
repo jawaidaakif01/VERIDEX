@@ -13,3 +13,5 @@ print("Now let's wobble it: 5 bootstrap rounds")
 for round_number in range(5):
     wobble = one_bootstrap_round(changes)
     print("Round", round_number + 1, "- average change: ", round(wobble, 3))
+
+print(changes)
