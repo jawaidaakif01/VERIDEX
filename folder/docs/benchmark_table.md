@@ -1,7 +1,7 @@
 | Method | False alarms (harmless 0.03 drop) | Catches (real 0.08 drop) |
 |---|---|---|
 | Ours (two-sided 95%) | 0.7% | 20.3% |
-| Ours (one-sided 95%) | 1.7% | 20.3% |
+| Ours (one-sided 95%) | 1.7% | 32.7% |
 | NAIVE, threshold 0.05 | 21.7% | 86.3% |
 | NAIVE, threshold 0.06 | 11.3% | 77.3% |
 | NAIVE, threshold 0.07 | 5.7% | 65.0% |

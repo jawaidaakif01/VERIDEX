@@ -54,7 +54,7 @@ real_changes, real_two, real_one = run_many(0.08)
 
 rows = []
 rows.append(("Ours (two-sided 95%)", precent_regression(harmless_two), precent_regression(real_two)))
-rows.append(("Ours (one-sided 95%)", precent_regression(harmless_one), precent_regression(real_two)))
+rows.append(("Ours (one-sided 95%)", precent_regression(harmless_one), precent_regression(real_one)))
 
 for threshold in THRESHOLDS:
     name = "NAIVE, threshold " + str(threshold)
