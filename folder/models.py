@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 from pydantic import BaseModel
 
 
@@ -15,3 +15,9 @@ class RunRecord(BaseModel):
     output: str
     error: Optional[str] = None
     seconds: float
+
+
+class AgentResult(BaseModel):
+    output: str
+    tools_called: List[str] = []
+    steps: int = 0
