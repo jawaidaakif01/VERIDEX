@@ -69,6 +69,16 @@ def confidence_range(changes, n_rounds = 1000):
     high_position = int(n_rounds * 0.975) - 1
     return round_averages[low_position], round_averages[high_position]
 
+def one_sided_range(changes, n_rounds = 1000):
+    round_averages = []
+    for r in range(n_rounds):
+        round_averages.append(one_bootstrap_round(changes))
+
+    round_averages.sort()
+    low_position = int(n_rounds * 0.05)
+    high_position = int(n_rounds * 0.95) - 1
+    return round_averages[low_position], round_averages[high_position]
+
 
 def decide(low, high, delta):
     '''Turn the range into one of three verdicts.
