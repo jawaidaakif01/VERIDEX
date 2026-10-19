@@ -22,6 +22,21 @@ def check_step_limit(result, max_steps):
     return result.steps <= max_steps
 
 
+def check_contains(result, words):
+    text = result.output.lower()
+    for word in words:
+        if word.lower() not in text:
+            return False
+    return True
+
+
+def check_not_contains(result, words):
+    text = result.output.lower()
+    for word in words:
+        if word.lower() in text:
+            return False
+    return True
+
 def read_output_data(result):
     try:
         data = json.loads(result.output)
@@ -62,6 +77,12 @@ def run_all_checks(result, rules):
     if "max_steps" in rules:
         if not check_step_limit(result, rules["max_steps"]):
             failures.append("used " + str(result.steps) + " steps, limit is " + str(rules["max_steps"]))
+    if "contains" in rules:
+        if not check_contains(result, rules["contains"]):
+            failures.append("output does not contain all of " + str(rules["contains"]))
+    if "not_contains" in rules:
+        if not check_not_contains(result, rules["not_contains"]):
+            failures.append("output contains something forbidden: " + str(rules["not_contains"]))
     if "expected_category" in rules:
         if not check_label(result, "category", rules["expected_category"]):
             failures.append("category was not '" + rules["expected_category"] + "'")

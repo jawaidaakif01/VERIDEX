@@ -31,7 +31,7 @@ def looks_like_infra_error(message):
 
 def run_one_graph(graph, case, version, run_number, store, rules,
                   input_key="question", output_keys=None,
-                  max_attempts=5, retry_wait_seconds=20):
+                  max_attempts=5, retry_wait_seconds=20, agent_call=None):
     output = ""
     error = None
     passed = False
@@ -45,8 +45,11 @@ def run_one_graph(graph, case, version, run_number, store, rules,
     while True:
         start_time = time.perf_counter()
         try:
-            result = run_langgraph_agent(graph, case.question, store,
-                                         input_key=input_key, output_keys=output_keys)
+            if agent_call is not None:
+                result = agent_call(case.question)
+            else:
+                result = run_langgraph_agent(graph, case.question, store,
+                                             input_key=input_key, output_keys=output_keys)
             output = result.output
             tools_called = result.tools_called
             steps = result.steps
@@ -79,20 +82,21 @@ def run_one_graph(graph, case, version, run_number, store, rules,
         tools_called=tools_called,
         steps=steps,
         failures=failures,
+        # agent_call=None
     )
     return record
 
 
 def run_all_graph(graph, cases, version, n_runs, store, rules,
                   input_key="question", output_keys=None, pause_seconds=0,
-                  max_attempts=5, retry_wait_seconds=20):
+                  max_attempts=5, retry_wait_seconds=20, agent_call=None):
     records = []
     for case in cases:
         for run_number in range(1, n_runs + 1):
             record = run_one_graph(graph, case, version, run_number, store, rules,
                                    input_key=input_key, output_keys=output_keys,
                                    max_attempts=max_attempts,
-                                   retry_wait_seconds=retry_wait_seconds)
+                                   retry_wait_seconds=retry_wait_seconds, agent_call=agent_call)
             records.append(record)
             if pause_seconds > 0:
                 time.sleep(pause_seconds)

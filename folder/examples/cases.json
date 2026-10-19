@@ -1,0 +1,362 @@
+[
+  {
+    "case_id": "q1",
+    "question": "What is the capital of France? (question 1)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q2",
+    "question": "What is the capital of France? (question 2)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q3",
+    "question": "What is the capital of France? (question 3)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q4",
+    "question": "What is the capital of France? (question 4)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q5",
+    "question": "What is the capital of France? (question 5)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q6",
+    "question": "What is the capital of France? (question 6)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q7",
+    "question": "What is the capital of France? (question 7)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q8",
+    "question": "What is the capital of France? (question 8)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q9",
+    "question": "What is the capital of France? (question 9)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q10",
+    "question": "What is the capital of France? (question 10)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q11",
+    "question": "What is the capital of France? (question 11)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q12",
+    "question": "What is the capital of France? (question 12)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q13",
+    "question": "What is the capital of France? (question 13)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q14",
+    "question": "What is the capital of France? (question 14)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q15",
+    "question": "What is the capital of France? (question 15)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q16",
+    "question": "What is the capital of France? (question 16)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q17",
+    "question": "What is the capital of France? (question 17)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q18",
+    "question": "What is the capital of France? (question 18)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q19",
+    "question": "What is the capital of France? (question 19)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q20",
+    "question": "What is the capital of France? (question 20)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q21",
+    "question": "What is the capital of France? (question 21)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q22",
+    "question": "What is the capital of France? (question 22)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q23",
+    "question": "What is the capital of France? (question 23)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q24",
+    "question": "What is the capital of France? (question 24)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q25",
+    "question": "What is the capital of France? (question 25)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q26",
+    "question": "What is the capital of France? (question 26)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q27",
+    "question": "What is the capital of France? (question 27)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q28",
+    "question": "What is the capital of France? (question 28)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q29",
+    "question": "What is the capital of France? (question 29)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  },
+  {
+    "case_id": "q30",
+    "question": "What is the capital of France? (question 30)",
+    "rules": {
+      "contains": [
+        "Paris"
+      ],
+      "not_contains": [
+        "not sure"
+      ]
+    }
+  }
+]
