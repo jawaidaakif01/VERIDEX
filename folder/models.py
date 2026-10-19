@@ -6,6 +6,7 @@ class TestCase(BaseModel):
     case_id: str
     question: str
     expected_word: str = ""
+    rules: dict = {}
 
 class RunRecord(BaseModel):
     case_id: str
@@ -15,6 +16,9 @@ class RunRecord(BaseModel):
     output: str
     error: Optional[str] = None
     seconds: float
+    tools_called: List[str] = []
+    steps: int = 0
+    failures: List[str] = []
 
 
 class AgentResult(BaseModel):
