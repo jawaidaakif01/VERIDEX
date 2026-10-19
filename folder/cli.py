@@ -2,7 +2,7 @@ import os
 import typer
 from storage import load_records
 from analysis import compare_records, explain, get_case_ids, results_by_case, find_flaky_case_ids, overall_pass_rate
-from report import make_report
+from report import make_report, make_markdown
 from loader import load_agent_function, load_cases
 from models import AgentResult
 from runner import run_all_graph, InfraError
@@ -21,8 +21,9 @@ def load_or_exit(file_path):
 
 
 @app.command()
-def compare(old_file: str, new_file: str, delta: float = 0.05):
-    """Compare two result files. Exit code 1 means REGRESSION."""
+def compare(old_file: str, new_file: str, delta: float = 0.05,
+            markdown_out: str = "", html_out: str = "", strict: bool = False):
+    """Compare two result files. Exit code 1 means REGRESSION (or INCONCLUSIVE with --strict)."""
     old_records = load_or_exit(old_file)
     new_records = load_or_exit(new_file)
 
@@ -57,7 +58,17 @@ def compare(old_file: str, new_file: str, delta: float = 0.05):
                 typer.echo(line)
 
 
+    old_name = os.path.basename(old_file)
+    new_name = os.path.basename(new_file)
+    if markdown_out != "":
+        with open(markdown_out, "w", encoding="utf-8") as file:
+            file.write(make_markdown(result, old_name, new_name))
+    if html_out != "":
+        make_report(result, old_name, new_name, html_out)
+
     if result.verdict == "REGRESSION":
+        raise typer.Exit(code=1)
+    if strict and result.verdict == "INCONCLUSIVE":
         raise typer.Exit(code=1)
 
 

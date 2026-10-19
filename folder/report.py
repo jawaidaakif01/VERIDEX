@@ -111,3 +111,38 @@ def make_report(result, old_name, new_name, output_path):
     with open(output_path, "w", encoding="utf-8") as file:
         file.write(html)
     return output_path
+
+def make_markdown(result, old_name, new_name):
+    lines = []
+    lines.append("## VERIDEX: " + result.verdict)
+    lines.append("")
+    lines.append(explain(result))
+    lines.append("")
+    lines.append("| | |")
+    lines.append("|---|---|")
+    lines.append("| Files | `" + old_name + "` to `" + new_name + "` |")
+    lines.append("| Cases | " + str(result.n_cases) + " |")
+    lines.append("| Pass rate | " + str(round(result.old_pass_rate, 3)) + " to " + str(round(result.new_pass_rate, 3)) + " |")
+    lines.append("| Average change per case | " + str(round(result.observed_change, 3)) + " |")
+    lines.append("| 95% range | " + str(round(result.low, 3)) + " to " + str(round(result.high, 3)) + " |")
+    lines.append("| Delta (biggest drop accepted) | " + str(result.delta) + " |")
+    lines.append("| Naive rule (no uncertainty) | " + result.naive_verdict + " |")
+    if len(result.changed_cases) > 0:
+        lines.append("")
+        lines.append("**Cases whose pass rate changed (worst first):**")
+        lines.append("")
+        shown = 0
+        for item in result.changed_cases:
+            if shown >= 10:
+                break
+            line = "- `" + item.case_id + "`: " + str(item.old_rate) + " to " + str(item.new_rate)
+            if len(item.reasons) > 0:
+                line = line + " (" + "; ".join(item.reasons) + ")"
+            lines.append(line)
+            shown = shown + 1
+        hidden = len(result.changed_cases) - shown
+        if hidden > 0:
+            lines.append("- ...and " + str(hidden) + " more")
+    lines.append("")
+    lines.append("<sub>VERIDEX compares saved results. Delta must be chosen before looking at results.</sub>")
+    return "\n".join(lines) + "\n"

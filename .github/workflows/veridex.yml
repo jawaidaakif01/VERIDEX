@@ -1,0 +1,55 @@
+name: VERIDEX regression check
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  veridex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pydantic typer jinja2 matplotlib
+
+      - name: Compare saved results
+        id: veridex
+        continue-on-error: true
+        working-directory: folder
+        run: >
+          python cli.py compare
+          baselines/triage_v0_baseline.jsonl
+          results/candidate.jsonl
+          --delta 0.05
+          --markdown-out comment.md
+
+      - name: Show the result on the run page
+        if: always()
+        working-directory: folder
+        run: |
+          if [ -f comment.md ]; then cat comment.md >> "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: Comment on the pull request
+        if: always()
+        continue-on-error: true
+        working-directory: folder
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f comment.md ]; then
+            gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
+          fi
+
+      - name: Fail the check if VERIDEX found a regression
+        if: steps.veridex.outcome == 'failure'
+        run: exit 1
